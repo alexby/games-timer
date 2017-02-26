@@ -1,14 +1,24 @@
-export default (state = 0, action) => {
+import { SET_BACKGROUND, SET_HEAD_TITLE } from '../actions/';
+
+export default (state = {}, action) => {
+  /**
+   * @todo debug
+   */
+  console.log('STATE ', state);
+  console.log('ACTION', action);
+
   switch (action.type) {
-    case 'PAGE_MAIN':
+    case SET_BACKGROUND:
       return {
-        page: 'main',
+        ...state,
+        background: action.color,
       };
-    case 'PAGE_TIMER':
+    case SET_HEAD_TITLE:
       return {
-        page: 'timer',
+        ...state,
+        title: action.title,
       };
     default:
-      return state
+      return state;
   }
 }

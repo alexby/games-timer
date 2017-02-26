@@ -1,5 +1,6 @@
 import React from 'react';
 import TimerField from './Field';
+import { browserHistory } from 'react-router';
 
 class Timer extends React.Component {
   timerId;
@@ -10,19 +11,20 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      value: this.turn,
+      remainTime: this.turn,
     }
   }
 
   tick = () => {
-    let newValue = this.state.value - 100;
-    if (newValue <= 0) {
+    let newRemainTime = this.state.remainTime - 100;
+    if (newRemainTime <= 0) {
       this.stop();
-      newValue = 0;
+      newRemainTime = 0;
       this.playSound();
+      this.props.setBackground('red');
     }
     this.setState({
-      value: newValue,
+      remainTime: newRemainTime,
     });
   };
 
@@ -36,17 +38,24 @@ class Timer extends React.Component {
   stop = () => {
     console.log('stop');
     clearInterval(this.timerId);
+    this.props.setBackground('white');
   };
 
   refresh = () => {
+    this.stop();
+    console.log(this.props);
     this.setState({
-      value: this.turn,
+      remainTime: this.turn,
     });
     this.start();
   };
 
   playSound = () => {
     this.audio.play();
+  };
+
+  componentWillMount() {
+    this.props.setHeadTitle('game');
   };
 
   componentDidMount() {
@@ -59,12 +68,17 @@ class Timer extends React.Component {
 
   render() {
     return (<div>
-      <span onClick={this.refresh}>
-        <TimerField
-          value={this.state.value}
-          tick={this.tickSize}
-        />
-      </span>
+      <div>
+        <span onClick={this.refresh}>
+          <TimerField
+            remainTime={this.state.remainTime}
+            tick={this.tickSize}
+          />
+        </span>
+      </div>
+      <div>
+        <a onClick={browserHistory.goBack} href="#">Back</a>
+      </div>
     </div>)
   }
 }

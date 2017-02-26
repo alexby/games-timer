@@ -1,0 +1,2 @@
+export const SET_BACKGROUND = 'SET_BACKGROUND';
+export const SET_HEAD_TITLE = 'SET_HEAD_TITLE';

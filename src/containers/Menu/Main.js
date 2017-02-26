@@ -2,6 +2,10 @@ import React from 'react';
 import MenuButton from './Button';
 
 class MenuMain extends React.Component {
+  componentWillMount() {
+    this.props.setHeadTitle('Main');
+  }
+
   render() {
     return (
       <ul>

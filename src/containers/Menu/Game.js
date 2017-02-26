@@ -3,45 +3,54 @@ import MenuButton from './Button';
 
 class MenuGame extends React.Component {
   gamesModes = {
-    codenames: [
-      {
-        name: 'regular',
-        title: 'Regular',
-      },
-      {
-        name: 'hard',
-        title: 'Hard',
-      },
-    ],
-    settlers_of_catan: [
-      'normal',
-    ],
+    codenames: {
+      name: 'Codenames',
+      submenus: [
+        {
+          name: 'regular',
+          title: 'Regular',
+        },
+        {
+          name: 'hard',
+          title: 'Hard',
+        },
+      ]
+    },
+    settlers_of_catan: {
+      name: 'Settlers of catan',
+      submenus: [
+        'normal'
+      ]
+    },
   };
 
   menuModesList = (name) => {
-    console.log(this.gamesModes[name]);
-    return this.gamesModes[name].map((mode) => {
-        let link = this.props.params.name + '/' + mode.name;
+    return this.gamesModes[name].submenus.map((mode) => {
+        let link = '/game/' + this.props.params.name + '/' + mode.name;
         return (
-            <MenuButton
-              to={link}
-              title={mode.title}
-              key={mode.name}
+          <MenuButton
+            to={link}
+            title={mode.title}
+            key={mode.name}
           />
         )
       }
     )
   };
 
+  componentWillMount() {
+    this.props.setHeadTitle(this.gamesModes[this.props.params.name].name);
+  }
+
   render() {
-    //this.menuModesList(this.props.params.name);
     return (
       <ul>
         {this.menuModesList(this.props.params.name)}
-          <MenuButton
-            to="/"
-            title="Back"
-          />
+        <MenuButton
+          to="/"
+          title="Back"
+          key="/"
+        />
       </ul>
     );
 
