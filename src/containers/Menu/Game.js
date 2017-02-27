@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import MenuButton from './Button';
 
 class MenuGame extends React.Component {
@@ -56,5 +56,12 @@ class MenuGame extends React.Component {
 
   }
 }
+
+MenuGame.propTypes = {
+  setHeadTitle: PropTypes.func.isRequired,
+  params: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default MenuGame;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 class MenuButton extends React.Component {
@@ -10,5 +10,10 @@ class MenuButton extends React.Component {
     )
   }
 }
+
+MenuButton.propTypes = {
+  to: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default MenuButton;

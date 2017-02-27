@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class TimerField extends React.Component {
   render() {
@@ -11,5 +11,10 @@ class TimerField extends React.Component {
     )
   }
 }
+
+TimerField.propTypes = {
+  remainTime : PropTypes.number.isRequired,
+  tick: PropTypes.number.isRequired,
+};
 
 export default TimerField;

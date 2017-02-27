@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import logo from '../../logo.svg';
 import './App.css';
 
@@ -18,5 +18,15 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  background: PropTypes.string,
+  title: PropTypes.string,
+};
+
+App.defaultProps = {
+  background: 'white',
+  title: 'default',
+};
 
 export default App;

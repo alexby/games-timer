@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TimerField from './Field';
 import { browserHistory } from 'react-router';
 
@@ -79,5 +79,10 @@ class Timer extends React.Component {
     </div>)
   }
 }
+
+Timer.propTypes = {
+  setBackground: PropTypes.func.isRequired,
+  setHeadTitle: PropTypes.func.isRequired,
+};
 
 export default Timer;

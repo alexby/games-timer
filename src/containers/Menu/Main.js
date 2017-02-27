@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import MenuButton from './Button';
 
 class MenuMain extends React.Component {
@@ -21,5 +21,9 @@ class MenuMain extends React.Component {
     );
   }
 }
+
+MenuMain.propTypes = {
+  setHeadTitle: PropTypes.func.isRequired,
+};
 
 export default MenuMain;
