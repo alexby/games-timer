@@ -4,7 +4,7 @@ import Game from './Game';
 import { SET_HEAD_TITLE } from '../../actions'
 
 const mapDispatchToProps = (dispatch) => ({
-  setHeadTitle: (title) => dispatch({ type: SET_HEAD_TITLE, title: title }),
+  setHeadTitle: (title) => dispatch({ type: SET_HEAD_TITLE, payload: { title: title }}),
 });
 
 const MenuMain = connect(null, mapDispatchToProps)(Main);
