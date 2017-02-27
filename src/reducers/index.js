@@ -1,12 +1,6 @@
 import { SET_BACKGROUND, SET_HEAD_TITLE } from '../actions/';
 
 export default (state = {}, action) => {
-  /**
-   * @todo debug
-   */
-  console.log('STATE ', state);
-  console.log('ACTION', action);
-
   switch (action.type) {
     case SET_BACKGROUND:
       return {

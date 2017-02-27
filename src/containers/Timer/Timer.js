@@ -29,21 +29,18 @@ class Timer extends React.Component {
   };
 
   start = () => {
-    console.log('start');
     this.timerId = setInterval(this.tick, 100);
     this.audio.pause();
     this.audio.currentTime = 0;
   };
 
   stop = () => {
-    console.log('stop');
     clearInterval(this.timerId);
     this.props.setBackground('white');
   };
 
   refresh = () => {
     this.stop();
-    console.log(this.props);
     this.setState({
       remainTime: this.turn,
     });

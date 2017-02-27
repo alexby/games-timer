@@ -2,14 +2,8 @@ import { createStore } from 'redux';
 import reducers from '../reducers';
 
 const store = createStore(
-  reducers
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
-/**
- * @todo debug
- */
-store.subscribe(() => {
-  console.log('RESULT', store.getState());
-});
 
 export default store;
