@@ -6,7 +6,6 @@ class Timer extends React.Component {
   timerId;
   turn = 3000;
   tickSize = 100;
-  audio = new Audio('/alert.wav');
 
   constructor(props) {
     super(props);
@@ -20,7 +19,7 @@ class Timer extends React.Component {
     if (newRemainTime <= 0) {
       this.stop();
       newRemainTime = 0;
-      this.playSound();
+      this.props.throwAlert();
       this.props.setBackground('red');
     }
     this.setState({
@@ -30,8 +29,7 @@ class Timer extends React.Component {
 
   start = () => {
     this.timerId = setInterval(this.tick, 100);
-    this.audio.pause();
-    this.audio.currentTime = 0;
+    this.props.disableAlert();
   };
 
   stop = () => {
@@ -45,10 +43,6 @@ class Timer extends React.Component {
       remainTime: this.turn,
     });
     this.start();
-  };
-
-  playSound = () => {
-    this.audio.play();
   };
 
   componentWillMount() {
@@ -83,6 +77,8 @@ class Timer extends React.Component {
 Timer.propTypes = {
   setBackground: PropTypes.func.isRequired,
   setHeadTitle: PropTypes.func.isRequired,
+  throwAlert: PropTypes.func.isRequired,
+  disableAlert: PropTypes.func.isRequired,
 };
 
 export default Timer;
