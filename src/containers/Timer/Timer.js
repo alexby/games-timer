@@ -34,7 +34,6 @@ class Timer extends React.Component {
 
   stop = () => {
     clearInterval(this.timerId);
-    this.props.setBackground('white');
   };
 
   refresh = () => {
@@ -75,7 +74,6 @@ class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  setBackground: PropTypes.func.isRequired,
   setHeadTitle: PropTypes.func.isRequired,
   throwAlert: PropTypes.func.isRequired,
   disableAlert: PropTypes.func.isRequired,
