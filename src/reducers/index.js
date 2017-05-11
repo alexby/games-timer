@@ -1,4 +1,8 @@
-import { SET_BACKGROUND, SET_HEAD_TITLE } from '../actions/';
+import {
+  SET_BACKGROUND,
+  SET_HEAD_TITLE,
+  SET_TIME,
+} from '../actions/';
 
 const initialState = {
   background: 'white',
@@ -16,6 +20,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         title: action.payload.title,
+      };
+    case SET_TIME:
+      return {
+        ...state,
+        time: action.payload.time,
       };
     default:
       return state;

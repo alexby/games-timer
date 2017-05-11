@@ -3,67 +3,29 @@ import TimerField from './Field';
 import { browserHistory } from 'react-router';
 
 class Timer extends React.Component {
-  timerId;
-  turn = 3000;
   tickSize = 100;
 
   constructor(props) {
     super(props);
-    this.state ={
-      remainTime: this.turn,
-    }
   }
-
-  tick = () => {
-    let newRemainTime = this.state.remainTime - 100;
-    if (newRemainTime <= 0) {
-      this.stop();
-      newRemainTime = 0;
-      this.props.throwAlert();
-      this.props.setBackground('red');
-    }
-    this.setState({
-      remainTime: newRemainTime,
-    });
-  };
-
-  start = () => {
-    this.timerId = setInterval(this.tick, 100);
-    this.props.disableAlert();
-  };
-
-  stop = () => {
-    clearInterval(this.timerId);
-  };
-
-  refresh = () => {
-    this.stop();
-    this.setState({
-      remainTime: this.turn,
-    });
-    this.start();
-  };
 
   componentWillMount() {
     this.props.setHeadTitle('game');
   };
 
   componentDidMount() {
-    this.start();
+    this.props.startTimer();
   }
 
   componentWillUnmount() {
-    this.stop();
+    this.props.stopTimer();
   }
 
   render() {
     return (<div>
       <div>
-        <span onClick={this.refresh}>
-          <TimerField
-            remainTime={this.state.remainTime}
-            tick={this.tickSize}
-          />
+        <span onClick={this.props.startTimer}>
+          <TimerField remainTime={this.props.time} tick={this.tickSize} />
         </span>
       </div>
       <div>
@@ -75,8 +37,13 @@ class Timer extends React.Component {
 
 Timer.propTypes = {
   setHeadTitle: PropTypes.func.isRequired,
-  throwAlert: PropTypes.func.isRequired,
   disableAlert: PropTypes.func.isRequired,
+  startTimer: PropTypes.func.isRequired,
+  stopTimer: PropTypes.func.isRequired,
+};
+
+Timer.defaultProps = {
+  time: 3000,
 };
 
 export default Timer;
