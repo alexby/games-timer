@@ -67,7 +67,7 @@ class Timer extends React.Component {
         </span>
       </div>
       <div>
-        <a onClick={browserHistory.goBack} href="#">Back</a>
+        <a onClick={() => {this.props.disableAlert(); browserHistory.goBack()}} href="#">Back</a>
       </div>
     </div>)
   }
