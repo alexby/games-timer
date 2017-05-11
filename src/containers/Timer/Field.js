@@ -14,7 +14,11 @@ class TimerField extends React.Component {
 
 TimerField.propTypes = {
   remainTime : PropTypes.number.isRequired,
-  tick: PropTypes.number.isRequired,
+  tick: PropTypes.number,
+};
+
+TimerField.defaultProps = {
+  tick: 1000,
 };
 
 export default TimerField;
